@@ -21,7 +21,6 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.ImageViewCompat;
 import android.text.TextUtils;
@@ -389,7 +388,7 @@ public class SimpleSearchView extends FrameLayout {
                     return false;
                 }
             };
-            SimpleAnimationUtils.INSTANCE.revealOrFadeIn(this, animationDuration, animationListener, getRevealAnimationCenter()).start();
+            SimpleAnimationUtils.revealOrFadeIn(this, animationDuration, animationListener, getRevealAnimationCenter()).start();
         } else {
             setVisibility(View.VISIBLE);
         }

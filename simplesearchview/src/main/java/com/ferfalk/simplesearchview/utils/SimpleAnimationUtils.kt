@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.ferfalk.simplesearchview.utils
 
 import android.animation.Animator
@@ -25,22 +27,27 @@ object SimpleAnimationUtils {
     val defaultInterpolator: Interpolator
         get() = FastOutSlowInInterpolator()
 
+    @JvmStatic
     fun revealOrFadeIn(view: View, duration: Int, center: Point?): Animator {
         return revealOrFadeIn(view, duration, null, center)
     }
 
+    @JvmStatic
     fun revealOrFadeIn(view: View, listener: AnimationListener?): Animator {
         return revealOrFadeIn(view, ANIMATION_DURATION_DEFAULT, listener, null)
     }
 
+    @JvmStatic
     fun revealOrFadeIn(view: View, center: Point?): Animator {
         return revealOrFadeIn(view, ANIMATION_DURATION_DEFAULT, null, center)
     }
 
+    @JvmStatic
     fun revealOrFadeIn(view: View, listener: AnimationListener?, center: Point?): Animator {
         return revealOrFadeIn(view, ANIMATION_DURATION_DEFAULT, listener, center)
     }
 
+    @JvmStatic
     @JvmOverloads
     fun revealOrFadeIn(view: View, duration: Int = ANIMATION_DURATION_DEFAULT, listener: AnimationListener? = null, center: Point? = null): Animator {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -50,18 +57,22 @@ object SimpleAnimationUtils {
         }
     }
 
+    @JvmStatic
     fun hideOrFadeOut(view: View, duration: Int, center: Point?): Animator? {
         return hideOrFadeOut(view, duration, null, center)
     }
 
+    @JvmStatic
     fun hideOrFadeOut(view: View, listener: AnimationListener?): Animator? {
         return hideOrFadeOut(view, ANIMATION_DURATION_DEFAULT, listener, null)
     }
 
+    @JvmStatic
     fun hideOrFadeOut(view: View, center: Point?): Animator? {
         return hideOrFadeOut(view, ANIMATION_DURATION_DEFAULT, null, center)
     }
 
+    @JvmStatic
     fun hideOrFadeOut(view: View, listener: AnimationListener?, center: Point?): Animator? {
         return hideOrFadeOut(view, ANIMATION_DURATION_DEFAULT, listener, center)
     }
