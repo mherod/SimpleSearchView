@@ -50,24 +50,24 @@ object SimpleAnimationUtils {
         }
     }
 
-    fun hideOrFadeOut(view: View, duration: Int, center: Point?): Animator {
+    fun hideOrFadeOut(view: View, duration: Int, center: Point?): Animator? {
         return hideOrFadeOut(view, duration, null, center)
     }
 
-    fun hideOrFadeOut(view: View, listener: AnimationListener?): Animator {
+    fun hideOrFadeOut(view: View, listener: AnimationListener?): Animator? {
         return hideOrFadeOut(view, ANIMATION_DURATION_DEFAULT, listener, null)
     }
 
-    fun hideOrFadeOut(view: View, center: Point?): Animator {
+    fun hideOrFadeOut(view: View, center: Point?): Animator? {
         return hideOrFadeOut(view, ANIMATION_DURATION_DEFAULT, null, center)
     }
 
-    fun hideOrFadeOut(view: View, listener: AnimationListener?, center: Point?): Animator {
+    fun hideOrFadeOut(view: View, listener: AnimationListener?, center: Point?): Animator? {
         return hideOrFadeOut(view, ANIMATION_DURATION_DEFAULT, listener, center)
     }
 
     @JvmOverloads
-    fun hideOrFadeOut(view: View, duration: Int = ANIMATION_DURATION_DEFAULT, listener: AnimationListener? = null, center: Point? = null): Animator {
+    fun hideOrFadeOut(view: View, duration: Int = ANIMATION_DURATION_DEFAULT, listener: AnimationListener? = null, center: Point? = null): Animator? {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             hide(view, duration, listener, center)
         } else {
@@ -116,28 +116,28 @@ object SimpleAnimationUtils {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    fun hide(view: View, duration: Int, center: Point?): Animator {
+    fun hide(view: View, duration: Int, center: Point?): Animator? {
         return hide(view, duration, null, center)
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    fun hide(view: View, listener: AnimationListener?): Animator {
+    fun hide(view: View, listener: AnimationListener?): Animator? {
         return hide(view, ANIMATION_DURATION_DEFAULT, listener, null)
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    fun hide(view: View, center: Point?): Animator {
+    fun hide(view: View, center: Point?): Animator? {
         return hide(view, ANIMATION_DURATION_DEFAULT, null, center)
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    fun hide(view: View, listener: AnimationListener?, center: Point?): Animator {
+    fun hide(view: View, listener: AnimationListener?, center: Point?): Animator? {
         return hide(view, ANIMATION_DURATION_DEFAULT, listener, center)
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @JvmOverloads
-    fun hide(view: View, duration: Int = ANIMATION_DURATION_DEFAULT, listener: AnimationListener? = null, center: Point? = null): Animator {
+    fun hide(view: View, duration: Int = ANIMATION_DURATION_DEFAULT, listener: AnimationListener? = null, center: Point? = null): Animator? {
         var center = center
         if (center == null) {
             center = getDefaultCenter(view)
