@@ -66,6 +66,7 @@ object SimpleAnimationUtils {
         return hideOrFadeOut(view, ANIMATION_DURATION_DEFAULT, listener, center)
     }
 
+    @JvmStatic
     @JvmOverloads
     fun hideOrFadeOut(view: View, duration: Int = ANIMATION_DURATION_DEFAULT, listener: AnimationListener? = null, center: Point? = null): Animator? {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -137,11 +138,13 @@ object SimpleAnimationUtils {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @JvmOverloads
-    fun hide(view: View, duration: Int = ANIMATION_DURATION_DEFAULT, listener: AnimationListener? = null, center: Point? = null): Animator? {
-        var center = center
-        if (center == null) {
-            center = getDefaultCenter(view)
+    fun hide(view: View?, duration: Int = ANIMATION_DURATION_DEFAULT, listener: AnimationListener? = null, center: Point? = null): Animator? {
+
+        if (view?.isAttachedToWindow != true) {
+            return null
         }
+
+        val center = center ?: getDefaultCenter(view)
 
         val anim = ViewAnimationUtils.createCircularReveal(view, center.x, center.y, getRevealRadius(center, view).toFloat(), 0f)
         anim.addListener(object : DefaultActionAnimationListener(view, listener) {
@@ -228,6 +231,7 @@ object SimpleAnimationUtils {
         return verticalSlideView(view, fromHeight, toHeight, ANIMATION_DURATION_DEFAULT, listener)
     }
 
+    @JvmStatic
     @JvmOverloads
     fun verticalSlideView(view: View, fromHeight: Int, toHeight: Int, duration: Int, listener: AnimationListener? = null): Animator {
         val anim = ValueAnimator

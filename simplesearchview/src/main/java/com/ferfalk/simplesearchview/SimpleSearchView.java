@@ -1,5 +1,6 @@
 package com.ferfalk.simplesearchview;
 
+import android.animation.Animator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +21,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.widget.ImageViewCompat;
 import android.text.TextUtils;
@@ -50,6 +52,7 @@ import static android.app.Activity.RESULT_OK;
 /**
  * @author Fernando A. H. Falkiewicz
  */
+@SuppressWarnings("unused")
 public class SimpleSearchView extends FrameLayout {
     public static final int REQUEST_VOICE_SEARCH = 735;
     public static final int CARD_CORNER_RADIUS = 4;
@@ -421,17 +424,26 @@ public class SimpleSearchView extends FrameLayout {
         searchIsClosing = false;
         clearFocus();
 
-        if (animate) {
-            SimpleAnimationUtils.AnimationListener animationListener = new SimpleAnimationListener() {
-                @Override
-                public boolean onAnimationEnd(@NonNull View view) {
-                    if (searchViewListener != null) {
-                        searchViewListener.onSearchViewClosedAnimation();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (animate && isAttachedToWindow()) {
+                SimpleAnimationUtils.AnimationListener animationListener = new SimpleAnimationListener() {
+                    @Override
+                    public boolean onAnimationEnd(@NonNull View view) {
+                        if (searchViewListener != null) {
+                            searchViewListener.onSearchViewClosedAnimation();
+                        }
+                        return false;
                     }
-                    return false;
+                };
+                Animator animator = SimpleAnimationUtils.hideOrFadeOut(this, animationDuration, animationListener, getRevealAnimationCenter());
+                if (animator != null) {
+                    animator.start();
+                } else {
+                    setVisibility(View.INVISIBLE);
                 }
-            };
-            SimpleAnimationUtils.INSTANCE.hideOrFadeOut(this, animationDuration, animationListener, getRevealAnimationCenter()).start();
+            } else {
+                setVisibility(View.INVISIBLE);
+            }
         } else {
             setVisibility(View.INVISIBLE);
         }
@@ -492,7 +504,7 @@ public class SimpleSearchView extends FrameLayout {
         }
 
         if (animate) {
-            SimpleAnimationUtils.INSTANCE.verticalSlideView(tabLayout, 0, tabLayoutInitialHeight, animationDuration).start();
+            SimpleAnimationUtils.verticalSlideView(tabLayout, 0, tabLayoutInitialHeight, animationDuration).start();
         } else {
             tabLayout.setVisibility(View.VISIBLE);
         }
@@ -516,7 +528,7 @@ public class SimpleSearchView extends FrameLayout {
         }
 
         if (animate) {
-            SimpleAnimationUtils.INSTANCE.verticalSlideView(tabLayout, tabLayout.getHeight(), 0, animationDuration).start();
+            SimpleAnimationUtils.verticalSlideView(tabLayout, tabLayout.getHeight(), 0, animationDuration).start();
         } else {
             tabLayout.setVisibility(View.GONE);
         }
