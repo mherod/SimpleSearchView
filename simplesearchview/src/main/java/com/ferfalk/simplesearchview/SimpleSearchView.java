@@ -386,7 +386,7 @@ public class SimpleSearchView extends FrameLayout {
                     return false;
                 }
             };
-            SimpleAnimationUtils.revealOrFadeIn(this, animationDuration, animationListener, getRevealAnimationCenter()).start();
+            SimpleAnimationUtils.INSTANCE.revealOrFadeIn(this, animationDuration, animationListener, getRevealAnimationCenter()).start();
         } else {
             setVisibility(View.VISIBLE);
         }
@@ -431,7 +431,7 @@ public class SimpleSearchView extends FrameLayout {
                     return false;
                 }
             };
-            SimpleAnimationUtils.hideOrFadeOut(this, animationDuration, animationListener, getRevealAnimationCenter()).start();
+            SimpleAnimationUtils.INSTANCE.hideOrFadeOut(this, animationDuration, animationListener, getRevealAnimationCenter()).start();
         } else {
             setVisibility(View.INVISIBLE);
         }
@@ -492,7 +492,7 @@ public class SimpleSearchView extends FrameLayout {
         }
 
         if (animate) {
-            SimpleAnimationUtils.verticalSlideView(tabLayout, 0, tabLayoutInitialHeight, animationDuration).start();
+            SimpleAnimationUtils.INSTANCE.verticalSlideView(tabLayout, 0, tabLayoutInitialHeight, animationDuration).start();
         } else {
             tabLayout.setVisibility(View.VISIBLE);
         }
@@ -516,7 +516,7 @@ public class SimpleSearchView extends FrameLayout {
         }
 
         if (animate) {
-            SimpleAnimationUtils.verticalSlideView(tabLayout, tabLayout.getHeight(), 0, animationDuration).start();
+            SimpleAnimationUtils.INSTANCE.verticalSlideView(tabLayout, tabLayout.getHeight(), 0, animationDuration).start();
         } else {
             tabLayout.setVisibility(View.GONE);
         }
