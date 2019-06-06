@@ -1,7 +1,8 @@
 package com.ferfalk.simplesearchview.utils;
 
-import android.support.annotation.NonNull;
 import android.view.View;
+
+import androidx.annotation.NonNull;
 
 /**
  * @author Fernando A. H. Falkiewicz
