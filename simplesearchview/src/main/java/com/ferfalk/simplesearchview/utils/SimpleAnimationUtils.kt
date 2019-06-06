@@ -8,11 +8,11 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.graphics.Point
 import android.os.Build
-import android.support.annotation.RequiresApi
-import android.support.v4.view.animation.FastOutSlowInInterpolator
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.Interpolator
+import androidx.annotation.RequiresApi
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import java.util.*
 import kotlin.math.ceil
 import kotlin.math.pow
